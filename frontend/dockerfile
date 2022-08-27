@@ -1,0 +1,21 @@
+#STAGE 1
+FROM node:16.7.0-alpine3.14 as builder
+
+#Set Wokrdir and Copy Context
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install --quiet
+COPY . .
+
+# Build Package
+RUN npm run build
+
+#STAGE 2
+FROM nginx:1.23.1
+WORKDIR /usr/share/nginx/html
+#RUN rm -rf /usr/share/nginx/html/*
+#COPY /nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80
+#START NGINX SERVICE
+CMD ["nginx", "-g", "daemon off;"]

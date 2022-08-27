@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  frontend-app:
+    image: taufiq14s/proshop-frontend:latest
+    stdin_open: true
+    ports:
+      - "80:80"
+    networks:
+      - proshop-net
+    env_file: ./.env
+
+  backend-app:
+    image: taufiq14s/proshop-backend:latest
+    ports:
+      - "8000:8000"
+    networks:
+      - proshop-net
+    depends_on:
+      - mongodb
+    env_file: ./.env
+
+  mongodb:
+    image: mongo:4.4.11
+    volumes:
+        - ./proshop-app-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - proshop-net
+
+networks:
+  proshop-net:
+    driver: bridge
