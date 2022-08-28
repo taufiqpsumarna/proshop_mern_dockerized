@@ -3,6 +3,7 @@ version: '3'
 services:
   reverse-proxy:
     image: nginx:1.23.1
+    container_name: nginx-reverse-proxy
     ports:
       - "80:80"
     networks:
@@ -15,6 +16,7 @@ services:
       - ./nginx/access.log:/etc/nginx/access.log
   frontend-app:
     image: taufiq14s/proshop-frontend:latest
+    container_name: frontend-app
     stdin_open: true
     #Because we use reverse-proxy we don't mapping port to outside of the host, let the reverse proxy handle it
     # ports:
@@ -25,6 +27,7 @@ services:
 
   backend-app:
     image: taufiq14s/proshop-backend:latest
+    container_name: backend-app
     #Because we use reverse-proxy we don't mapping port to outside of the host, let the reverse proxy handle it
     # ports:
     #   - "5000:5000"
@@ -36,6 +39,7 @@ services:
 
   mongodb:
     image: mongo:4.4.11
+    container_name: mongodb-srv
     volumes:
         - ./proshop-app-data:/data/db
     #Enable port if you need to connect the mongodb
