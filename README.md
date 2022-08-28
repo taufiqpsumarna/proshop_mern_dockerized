@@ -151,10 +151,10 @@ docker compose up
 #Running container background
 docker compose up -d
 ```
-# How To Seed Database
+# How To Seed Database On Backend Container
 Make sure all docker container is running up then you can access the backend container like this:
 ```
-docker exec -it backend-app sh
+docker exec -it proshop-backend-app sh
 
 # Import data
 npm run data:import
