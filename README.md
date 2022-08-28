@@ -105,7 +105,7 @@ jane@example.com (Customer)
 # Docker Configuration
 Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the application !
 
-``These instructions use Docker version 20.10.17, build 100c701 and Docker Compose version v2.7.0 may be different approach in future if using newer version of docker engine and composition docker.``
+``These instructions use Docker version 20.10.17, build 100c701 and Docker Compose version v2.7.0 may be different approach in future if using newer version of docker engine and docker compose.``
 
 ### Pre requirerites
 1. Make sure you has created .env file on this root directory, follow instruction above or use .env.example
@@ -115,7 +115,7 @@ Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the app
 You may want to build Docker images manually or simply skip this step for using the docker image that already uploaded to my dockerhub registry
 ### Build Frontend Docker Images
 ```
-cd backend
+cd frontend
 docker build -t <your_dockerhub_username>/proshop-frontend .
 ```
 
