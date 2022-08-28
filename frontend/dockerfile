@@ -1,20 +1,26 @@
 #STAGE 1
-FROM node:16.7.0-alpine3.14 as builder
+FROM node:lts-alpine3.16 as builder
 
-#Set Wokrdir and Copy Context
+#Set working directory
 WORKDIR /usr/src/app
+#Copy Package.json To Docker Image
 COPY package.json .
+#Install Package Dependency
 RUN npm install --quiet
+#Copy Context To Docker Image
 COPY . .
-
 # Build Package
 RUN npm run build
 
 #STAGE 2
 FROM nginx:1.23.1
+#Set working directory
 WORKDIR /usr/share/nginx/html
+#Remove nginx default file and configuration
 RUN rm -rf /usr/share/nginx/html/*
+#Copy Build From Builder image
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+#Expose Image PORT
 EXPOSE 80
-#START NGINX SERVICE
+#Start Nginx Server
 CMD ["nginx", "-g", "daemon off;"]
