@@ -26,5 +26,5 @@ yarn-error.log*
 .vscode/settings.json
 
 #MongoDBData
-package-lock.json
+*package-lock.json
 proshop-app-data
