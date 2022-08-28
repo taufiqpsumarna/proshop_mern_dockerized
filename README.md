@@ -100,7 +100,95 @@ jane@example.com (Customer)
 123456
 ```
 
+# Docker Architecture Diagram
 
+# Docker Configuration
+Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the application !
+
+``These instructions use Docker version 20.10.17, build 100c701 and Docker Compose version v2.7.0 may be different approach in future if using newer version of docker engine and composition docker.``
+
+### Pre requirerites
+1. Make sure you has created .env file on this root directory, follow instruction above or use .env.example
+2. You have some knowledge about Docker *just kidding you can use this repo as your learning material
+
+# Build Docker Images
+You may want to build Docker images manually or simply skip this step for using the docker image that already uploaded to my dockerhub registry
+### Build Frontend Docker Images
+```
+cd backend
+docker build -t <your_dockerhub_username>/proshop-frontend .
+```
+
+### Build Backend Docker Images
+```
+cd backend
+docker build -t <your_dockerhub_username>/proshop-backend .
+```
+# Update docker-compose.yml
+
+### Docker Compose Frontend Services, change to your docker image name
+```
+...
+frontend-app:
+    image: <your_dockerhub_username>/proshop-frontend:latest
+    container_name: frontend-app
+...
+```
+### Docker Compose Frontend Services, change to your docker image name
+```
+...
+backend-app:
+    image: <your_dockerhub_username>/proshop-backend:latest
+    container_name: backend-app
+...
+```
+
+# Firing up docker container
+
+```
+#Running container foreground
+docker compose up 
+#Running container background
+docker compose up -d
+```
+# How To Seed Database
+Make sure all docker container is running up then you can access the backend container like this:
+```
+docker exec -it backend-app sh
+
+# Import data
+npm run data:import
+
+# Destroy data
+npm run data:destroy
+```
+# Notes
+You may need to check the docker-compose.yml before start up the docker container, and look to docker architecture diagram first.
+
+- If you need connect to mongodb just uncomment the following line in the docker-compose.yml file
+```
+  mongodb:
+    image: mongo:4.4.11
+    container_name: mongodb-srv
+    volumes:
+    - ./proshop-app-data:/data/db
+    #Enable port if you need to connect the mongodb
+--> #ports:          <--
+--> #- "27017:27017" <--
+    networks:
+      - proshop-net
+```
+- If you want to deploy this application to your VPS or cloud VM, make sure you have updated the nginx.conf in the nginx folder before building or using the frontend image
+```
+...
+server {
+    listen 80;
+    server_name localhost;  #Change with your domain or subdomain ex: shop.example.com
+...
+```
+
+For more details about docker you can access the official documentation:
+https://docs.docker.com/
 ## License
 
 The MIT License
