@@ -38,8 +38,9 @@ services:
     image: mongo:4.4.11
     volumes:
         - ./proshop-app-data:/data/db
-    ports:
-      - "27017:27017"
+    #Enable port if you need to connect the mongodb
+    # ports:
+    #   - "27017:27017"
     networks:
       - proshop-net
 
