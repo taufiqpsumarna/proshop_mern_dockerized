@@ -148,6 +148,7 @@ backend-app:
 ```
 #Running container foreground
 docker compose up 
+
 #Running container background
 docker compose up -d
 ```
@@ -167,6 +168,7 @@ You may need to check the docker-compose.yml before start up the docker containe
 
 - If you need connect to mongodb just uncomment the following line in the docker-compose.yml file
 ```
+...
   mongodb:
     image: mongo:4.4.11
     container_name: mongodb-srv
@@ -177,6 +179,7 @@ You may need to check the docker-compose.yml before start up the docker containe
 --> #- "27017:27017" <--
     networks:
       - proshop-net
+...
 ```
 - If you want to deploy this application to your VPS or cloud VM, make sure you have updated the nginx.conf in the nginx folder before building or using the frontend image
 ```
