@@ -105,6 +105,17 @@ jane@example.com (Customer)
 
 ![Docker Architecture Diagram](https://github.com/taufiqpsumarna/proshop_mern_dockerized/blob/master/uploads/Docker.png)
 
+In thin project we create replicas for backend and frontend each two of them, you can modified replicas count or disable it by commented out in docker-compose.yml file:
+
+```
+
+...
+#deploy:
+#      replicas: 2
+...
+
+```
+
 # Docker Configuration
 
 Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the application !
