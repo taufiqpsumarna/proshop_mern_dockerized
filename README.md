@@ -101,7 +101,7 @@ jane@example.com (Customer)
 ```
 
 # Docker Architecture Diagram
-![Docker Architecture Diagram](https://github.com/bradtraversy/proshop_mern/blob/master/uploads/Docker.png)
+![Docker Architecture Diagram](https://raw.githubusercontent.com/taufiqpsumarna/proshop_mern_dockerized/master/uploads/Docker.png)
 
 # Docker Configuration
 Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the application !
