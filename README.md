@@ -101,6 +101,7 @@ jane@example.com (Customer)
 ```
 
 # Docker Architecture Diagram
+![Docker Architecture Diagram](https://github.com/bradtraversy/proshop_mern/blob/master/uploads/Docker.png)
 
 # Docker Configuration
 Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the application !
@@ -131,7 +132,6 @@ docker build -t <your_dockerhub_username>/proshop-backend .
 ...
 frontend-app:
     image: <your_dockerhub_username>/proshop-frontend:latest
-    container_name: frontend-app
 ...
 ```
 ### Docker Compose Frontend Services, change to your docker image name
@@ -139,7 +139,6 @@ frontend-app:
 ...
 backend-app:
     image: <your_dockerhub_username>/proshop-backend:latest
-    container_name: backend-app
 ...
 ```
 
