@@ -23,6 +23,7 @@ This is the course project for my [MERN eCommerce From Scratch](https://www.udem
 - Database seeder (products & users)
 
 ## Note on Issues
+
 Please do not post issues here that are related to your own code when taking the course. Add those in the Udemy Q/A. If you clone THIS repo and there are issues, then you can submit
 
 ## Usage
@@ -101,40 +102,51 @@ jane@example.com (Customer)
 ```
 
 # Docker Architecture Diagram
+
 ![Docker Architecture Diagram](https://github.com/taufiqpsumarna/proshop_mern_dockerized/blob/master/uploads/Docker.png)
 
 # Docker Configuration
+
 Docker instruction created by Taufiq 😁 shout-out to @bradtraversy for the application !
 
 ``These instructions use Docker version 20.10.17, build 100c701 and Docker Compose version v2.7.0 may be different approach in future if using newer version of docker engine and docker compose.``
 
 ### Pre requirerites
+
 1. Make sure you has created .env file on this root directory, follow instruction above or use .env.example
 2. You have some knowledge about Docker *just kidding you can use this repo as your learning material
 
 # Build Docker Images
+
 You may want to build Docker images manually or simply skip this step for using the docker image that already uploaded to my dockerhub registry
+
 ### Build Frontend Docker Images
+
 ```
 cd frontend
 docker build -t <your_dockerhub_username>/proshop-frontend .
 ```
 
 ### Build Backend Docker Images
+
 ```
 cd backend
 docker build -t <your_dockerhub_username>/proshop-backend .
 ```
+
 # Update docker-compose.yml
 
 ### Docker Compose Frontend Services, change to your docker image name
+
 ```
 ...
 proshop-frontend-app:
     image: <your_dockerhub_username>/proshop-frontend:latest
 ...
 ```
+
 ### Docker Compose Frontend Services, change to your docker image name
+
 ```
 ...
 proshop-backend-app:
@@ -151,8 +163,11 @@ docker compose up
 #Running container background
 docker compose up -d
 ```
+
 # How To Seed Database On Backend Container
+
 Make sure all docker container is running up then you can access the backend container like this:
+
 ```
 docker ps
 docker exec -it <backend-container-name> sh
@@ -163,10 +178,13 @@ npm run data:import
 # Destroy data
 npm run data:destroy
 ```
+
 # Notes
+
 You may need to check the docker-compose.yml before start up the docker container, and look to docker architecture diagram first.
 
 - If you need connect to mongodb just uncomment the following line in the docker-compose.yml file
+
 ```
 ...
   mongodb:
@@ -181,7 +199,9 @@ You may need to check the docker-compose.yml before start up the docker containe
       - proshop-net
 ...
 ```
+
 - If you want to deploy this application to your VPS or cloud VM, make sure you have updated the nginx.conf in the nginx folder before building or using the frontend image
+
 ```
 ...
 server {
@@ -191,12 +211,13 @@ server {
 ```
 
 For more details about docker you can access the official documentation:
-https://docs.docker.com/
+<https://docs.docker.com/>
+
 ## License
 
 The MIT License
 
-Copyright (c) 2020 Traversy Media https://traversymedia.com
+Copyright (c) 2020 Traversy Media <https://traversymedia.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
