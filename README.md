@@ -130,14 +130,14 @@ docker build -t <your_dockerhub_username>/proshop-backend .
 ### Docker Compose Frontend Services, change to your docker image name
 ```
 ...
-frontend-app:
+proshop-frontend-app:
     image: <your_dockerhub_username>/proshop-frontend:latest
 ...
 ```
 ### Docker Compose Frontend Services, change to your docker image name
 ```
 ...
-backend-app:
+proshop-backend-app:
     image: <your_dockerhub_username>/proshop-backend:latest
 ...
 ```
