@@ -193,17 +193,21 @@ node seeder -d
 # SSL Nginx Reverse Proxy Guide
 
 1. Create DNS record using Public IP docker server.
-2. Edit certbot command in docker-compose.yml replace with your email and domain.
-
+2. Update server name in nginx/nginx.conf
 ```
+server {
+    listen 80;
+    server_name {domain}; #Change with your domain or subdomain ex: shop.example.com
+    ...
+}
 ...
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain}
-...    
+...
+...
+server {
+    listen 443 ssl;
+    server_name {domain};  #Change with your domain or subdomain ex: shop.example.com
+}
 ```
-
 3. Request new certificate
     - First you may need to remove HTTPS nginx config block in nginx/nginx.conf
 
@@ -216,8 +220,8 @@ node seeder -d
     #HTTPS Access End
     ...
     ```
-
-    - Then run command for request new certificate``` docker compose run --rm  certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain} ``` replace with your own email and domain
+    - Dry run certificate request ``` docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d {domain} ``` replace with your own domain and you should get a success message like "The dry run was successful".
+    - Then run command for request new certificate ``` docker compose run --rm certbot certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain} ``` replace with your own email and domain
     - After request new certificate we bring back HTTPS nginx config block in nginx/nginx.conf (Don't forget to change {domain} for nginx loading ssl certificates)
 
     ```
