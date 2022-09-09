@@ -29,7 +29,3 @@ yarn-error.log*
 #MongoDBData
 *package-lock.json
 proshop-app-data
-
-#Nginx Config
-*/*/nginx.conf
-*nginx.conf
