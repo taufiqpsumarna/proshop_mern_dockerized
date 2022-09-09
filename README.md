@@ -189,6 +189,42 @@ node seeder
 # Destroy data
 node seeder -d
 ```
+# SSL Nginx Reverse Proxy Guide
+1. Create DNS record using Public IP docker server.
+2. Edit certbot command in docker-compose.yml replace with your email and domain.
+```
+...
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain}
+...    
+```
+3. Request new certificate
+    - First you may need to remove HTTPS nginx config block in nginx/nginx.conf
+    ```
+    ...
+    #HTTPS Access Start
+    ...
+    ...
+    ...
+    #HTTPS Access End
+    ...
+    ```
+    - Then run command for request new certificate``` docker compose run --rm  certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain} ``` replace with your own email and domain
+    - After request new certificate we bring back HTTPS nginx config block in nginx/nginx.conf (Don't forget to change {domain} for nginx loading ssl certificates)
+    ```
+    ...
+    #HTTPS Access Start
+    ssl_certificate /etc/letsencrypt/live/{domain}/fullchain.pem; #Replace with your domain name
+    ssl_certificate_key /etc/letsencrypt/live/{domain}/privkey.pem; #Replace with your domain name
+    #HTTPS Access End
+    ...
+    ```
+4. Fire up your application ``` docker-compose up -d ```
+
+### Troubleshooting
+- Make sure you have the firewall enabled for port 80 and port 443
 
 # Notes
 
@@ -223,6 +259,12 @@ server {
 
 For more details about docker you can access the official documentation:
 <https://docs.docker.com/>
+
+## Reference
+### Docker Nginx Certbot
+- https://mindsers.blog/post/https-using-nginx-certbot-docker/
+- https://www.agiksetiawan.com/posts/how-to-setup-nginx-free-ssl-using-lets-encrypt-with-certbot-in-docker/
+
 
 ## License
 
