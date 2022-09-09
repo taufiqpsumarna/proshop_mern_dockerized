@@ -184,10 +184,10 @@ docker ps
 docker exec -it <backend-container-name> sh
 
 # Import data
-npm run data:import
+node seeder
 
 # Destroy data
-npm run data:destroy
+node seeder -d
 ```
 
 # Notes
