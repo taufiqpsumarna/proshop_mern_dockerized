@@ -13,8 +13,9 @@ services:
       - proshop-frontend-app
       - proshop-backend-app
     volumes:
-    - ./nginx/conf/:/etc/nginx/conf.d/:ro
-    - ./certbot/www:/var/www/certbot/:ro
+     - ./nginx/conf/:/etc/nginx/conf.d/:ro
+     - ./certbot/www:/var/www/certbot/:ro
+     - ./certbot/conf/:/etc/nginx/ssl/:ro
     restart: always
   certbot:
     image: certbot/certbot
