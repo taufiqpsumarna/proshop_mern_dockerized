@@ -20,12 +20,13 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain}
+#    command: certonly --webroot --webroot-path=/var/www/certbot --email {email} --agree-tos --no-eff-email -d {domain}
     volumes: 
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/logs:/var/log/letsencrypt
       - ./certbot/data:/var/www/certbot
-    depends_on: reverse-proxy
+    depends_on: 
+      - reverse-proxy
     
   proshop-frontend-app:
     image: taufiq14s/proshop-frontend:latest
