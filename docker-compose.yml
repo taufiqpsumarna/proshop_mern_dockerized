@@ -13,16 +13,15 @@ services:
       - proshop-frontend-app
       - proshop-backend-app
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    - ./nginx/conf/:/etc/nginx/conf.d/:ro
+    - ./certbot/www:/var/www/certbot/:ro
     restart: always
   certbot:
     image: certbot/certbot
     container_name: certbot
     volumes: 
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
+    - ./certbot/www/:/var/www/certbot/:rw
+    - ./certbot/conf/:/etc/letsencrypt/:rw
     command: certonly --webroot -w /var/www/certbot --force-renewal --email {email} -d {domain} --agree-tos #Replace {email} and {domain} with yours
   proshop-frontend-app:
     image: taufiq14s/proshop-frontend:latest
