@@ -225,6 +225,8 @@ node seeder -d
 
 ### Troubleshooting
 - Make sure you have the firewall enabled for port 80 and port 443
+- Check if there any typos in configuration files
+- Run docker container with ``` docker-compose up ``` easier for debugging
 
 # Notes
 
