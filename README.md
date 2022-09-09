@@ -105,7 +105,7 @@ jane@example.com (Customer)
 
 ![Docker Architecture Diagram](https://github.com/taufiqpsumarna/proshop_mern_dockerized/blob/master/uploads/Docker.png)
 
-In thin project we create replicas for backend and frontend each two of them, you can modified replicas count or disable it by commented out in docker-compose.yml file:
+In this project we create replicas for backend and frontend each two of them, you can modified replicas count or disable it by commented out in docker-compose.yml file:
 
 ```
 
@@ -224,9 +224,9 @@ node seeder -d
 4. Fire up your application ``` docker-compose up -d ```
 
 ### Troubleshooting
-- Make sure you have the firewall enabled for port 80 and port 443
+- Make sure you have firewall allowing access to port 80 and port 443
 - Check if there any typos in configuration files
-- Run docker container with ``` docker-compose up ``` easier for debugging
+- Run docker container with ``` docker-compose up ``` it make easier for debugging
 
 # Notes
 
