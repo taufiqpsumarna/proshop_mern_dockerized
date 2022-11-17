@@ -13,7 +13,7 @@ COPY . .
 RUN npm run build
 
 #STAGE 2
-FROM nginx:1.23.1
+FROM nginx:1.23.2
 #Set working directory
 WORKDIR /usr/share/nginx/html
 #Remove nginx default file and configuration
